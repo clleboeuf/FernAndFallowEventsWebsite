@@ -61,6 +61,6 @@ namespace FernAndFallowWebsite.Models
                 .WillCascadeOnDelete(false);
         }
 
-        public System.Data.Entity.DbSet<FernAndFallowWebsite.Models.SendEmail> SendEmailViewModels { get; set; }
+        public System.Data.Entity.DbSet<FernAndFallowWebsite.Models.SendEmailViewModel> SendEmailViewModels { get; set; }
     }
 }

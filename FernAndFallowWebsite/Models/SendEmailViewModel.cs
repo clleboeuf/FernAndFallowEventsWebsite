@@ -7,7 +7,7 @@ using FernAndFallowWebsite.Utils;
 
 namespace FernAndFallowWebsite.Models
 {
-    public class SendEmail
+    public class SendEmailViewModel
     {
         public string EmailTo { get; set; }  
         public string Subject { get; set; }

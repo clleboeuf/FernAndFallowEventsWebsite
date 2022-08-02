@@ -244,7 +244,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\SendEmail.cs" />
+    <Compile Include="Models\SendEmailViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -273,7 +273,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\EmailSender.cs" />
-    <Compile Include="Controllers\SendEmailController.cs" />
+    <Compile Include="Controllers\SendEmailViewModelsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-FernAndFallowWebsite-20220731124620.mdf" />
@@ -368,11 +368,11 @@
     <Content Include="Views\WishLists\Details.cshtml" />
     <Content Include="Views\WishLists\Edit.cshtml" />
     <Content Include="Views\WishLists\Index.cshtml" />
-    <Content Include="Views\SendEmail\Create.cshtml" />
-    <Content Include="Views\SendEmail\Delete.cshtml" />
-    <Content Include="Views\SendEmail\Details.cshtml" />
-    <Content Include="Views\SendEmail\Edit.cshtml" />
-    <Content Include="Views\SendEmail\Index.cshtml" />
+    <Content Include="Views\SendEmailViewModels\Create.cshtml" />
+    <Content Include="Views\SendEmailViewModels\Delete.cshtml" />
+    <Content Include="Views\SendEmailViewModels\Details.cshtml" />
+    <Content Include="Views\SendEmailViewModels\Edit.cshtml" />
+    <Content Include="Views\SendEmailViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UploadedFiles\" />

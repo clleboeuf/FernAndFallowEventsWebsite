@@ -16,7 +16,7 @@ namespace FernAndFallowWebsite.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "A lil about us...";
 
             return View();
         }

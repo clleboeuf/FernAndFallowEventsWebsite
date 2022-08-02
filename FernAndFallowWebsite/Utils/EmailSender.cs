@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-
-
 namespace FernAndFallowWebsite.Utils
 {
     public class EmailSender
     {
 
-        static async Task sendEmailExecute()
+        public async Task SendEmailExecute()
         {
             var apiKey = Environment.GetEnvironmentVariable("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");
             var client = new SendGridClient(apiKey);
@@ -25,6 +23,7 @@ namespace FernAndFallowWebsite.Utils
             Console.WriteLine("Sending email");
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
+            
         }
     }
 }

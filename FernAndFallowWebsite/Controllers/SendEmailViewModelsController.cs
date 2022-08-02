@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using FernAndFallowWebsite.Models;
+using FernAndFallowWebsite.Utils;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using FernAndFallowWebsite.Models;
-using FernAndFallowWebsite.Utils;
 
 namespace FernAndFallowWebsite.Views
 {
-    public class SendEmailController : Controller
+    public class SendEmailViewModelsController : Controller
     {
         private Model1 db = new Model1();
         EmailSender email = new EmailSender();
@@ -29,7 +25,7 @@ namespace FernAndFallowWebsite.Views
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SendEmail sendEmailViewModel = db.SendEmailViewModels.Find(id);
+            SendEmailViewModel sendEmailViewModel = db.SendEmailViewModels.Find(id);
             if (sendEmailViewModel == null)
             {
                 return HttpNotFound();
@@ -48,7 +44,7 @@ namespace FernAndFallowWebsite.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmailTo,Subject,Contents")] SendEmail sendEmailViewModel)
+        public ActionResult Create([Bind(Include = "Id,EmailTo,Subject,Contents")] SendEmailViewModel sendEmailViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +56,13 @@ namespace FernAndFallowWebsite.Views
             return View(sendEmailViewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async void SendIt()
+        {
+            await email.SendEmailExecute();
+        }
+
         // GET: SendEmailViewModels/Edit/5
         public ActionResult Edit(string id)
         {
@@ -67,7 +70,7 @@ namespace FernAndFallowWebsite.Views
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SendEmail sendEmailViewModel = db.SendEmailViewModels.Find(id);
+            SendEmailViewModel sendEmailViewModel = db.SendEmailViewModels.Find(id);
             if (sendEmailViewModel == null)
             {
                 return HttpNotFound();
@@ -80,7 +83,7 @@ namespace FernAndFallowWebsite.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmailTo,Subject,Contents")] SendEmail sendEmailViewModel)
+        public ActionResult Edit([Bind(Include = "Id,EmailTo,Subject,Contents")] SendEmailViewModel sendEmailViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +101,7 @@ namespace FernAndFallowWebsite.Views
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SendEmail sendEmailViewModel = db.SendEmailViewModels.Find(id);
+            SendEmailViewModel sendEmailViewModel = db.SendEmailViewModels.Find(id);
             if (sendEmailViewModel == null)
             {
                 return HttpNotFound();
@@ -111,7 +114,7 @@ namespace FernAndFallowWebsite.Views
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            SendEmail sendEmailViewModel = db.SendEmailViewModels.Find(id);
+            SendEmailViewModel sendEmailViewModel = db.SendEmailViewModels.Find(id);
             db.SendEmailViewModels.Remove(sendEmailViewModel);
             db.SaveChanges();
             return RedirectToAction("Index");
