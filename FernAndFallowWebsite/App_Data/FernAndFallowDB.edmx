@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Admins" EntityType="Model1.Store.Admins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="Model1.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="Model1.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WishLists" EntityType="Model1.Store.WishLists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Quotes" EntityType="Model1.Store.Quotes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductCatergories" EntityType="Model1.Store.ProductCatergories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WishListItems" EntityType="Model1.Store.WishListItems" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AdminQuote" Association="Model1.Store.AdminQuote">
+      <End Role="Admin" EntitySet="Admins" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCatergoriesProduct" Association="Model1.Store.ProductCatergoriesProduct">
+      <End Role="ProductCatergories" EntitySet="ProductCatergories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerWishList" Association="Model1.Store.CustomerWishList">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="WishList" EntitySet="WishLists" />
+    </AssociationSet>
+    <AssociationSet Name="CustomerQuote" Association="Model1.Store.CustomerQuote">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="WishListItemProduct" Association="Model1.Store.WishListItemProduct">
+      <End Role="WishListItem" EntitySet="WishListItems" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="WishListWishListItem" Association="Model1.Store.WishListWishListItem">
+      <End Role="WishList" EntitySet="WishLists" />
+      <End Role="WishListItem" EntitySet="WishListItems" />
+    </AssociationSet>
+    <AssociationSet Name="WishListQuote" Association="Model1.Store.WishListQuote">
+      <End Role="WishList" EntitySet="WishLists" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WishList_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductCatergoriesId" Type="int" Nullable="false" />
+    <Property Name="WishListItemId" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WishLists">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quotes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AdminId" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="WishListId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCatergories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WishListItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuantityRequest" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitCost" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubTotal" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WishListId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AdminQuote">
+    <End Role="Admin" Type="Model1.Store.Admins" Multiplicity="1" />
+    <End Role="Quote" Type="Model1.Store.Quotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="AdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductCatergoriesProduct">
+    <End Role="ProductCatergories" Type="Model1.Store.ProductCatergories" Multiplicity="1" />
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCatergories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductCatergoriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerWishList">
+    <End Role="Customer" Type="Model1.Store.Customers" Multiplicity="*" />
+    <End Role="WishList" Type="Model1.Store.WishLists" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="WishList">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="WishList_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CustomerQuote">
+    <End Role="Customer" Type="Model1.Store.Customers" Multiplicity="1" />
+    <End Role="Quote" Type="Model1.Store.Quotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WishListItemProduct">
+    <End Role="WishListItem" Type="Model1.Store.WishListItems" Multiplicity="1" />
+    <End Role="Product" Type="Model1.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WishListItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="WishListItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WishListWishListItem">
+    <End Role="WishList" Type="Model1.Store.WishLists" Multiplicity="1" />
+    <End Role="WishListItem" Type="Model1.Store.WishListItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WishList">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WishListItem">
+        <PropertyRef Name="WishListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WishListQuote">
+    <End Role="WishList" Type="Model1.Store.WishLists" Multiplicity="1" />
+    <End Role="Quote" Type="Model1.Store.Quotes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WishList">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="WishListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Model1.Admin" />
+          <EntitySet Name="Customers" EntityType="Model1.Customer" />
+          <EntitySet Name="Products" EntityType="Model1.Product" />
+          <EntitySet Name="WishLists" EntityType="Model1.WishList" />
+          <EntitySet Name="Quotes" EntityType="Model1.Quote" />
+          <EntitySet Name="ProductCatergories" EntityType="Model1.ProductCatergories" />
+          <AssociationSet Name="AdminQuote" Association="Model1.AdminQuote">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Quote" EntitySet="Quotes" />
+          </AssociationSet>
+          <AssociationSet Name="ProductCatergoriesProduct" Association="Model1.ProductCatergoriesProduct">
+            <End Role="ProductCatergories" EntitySet="ProductCatergories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerWishList" Association="Model1.CustomerWishList">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="WishList" EntitySet="WishLists" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerQuote" Association="Model1.CustomerQuote">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Quote" EntitySet="Quotes" />
+          </AssociationSet>
+          <EntitySet Name="WishListItems" EntityType="Model1.WishListItem" />
+          <AssociationSet Name="WishListItemProduct" Association="Model1.WishListItemProduct">
+            <End Role="WishListItem" EntitySet="WishListItems" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="WishListWishListItem" Association="Model1.WishListWishListItem">
+            <End Role="WishList" EntitySet="WishLists" />
+            <End Role="WishListItem" EntitySet="WishListItems" />
+          </AssociationSet>
+          <AssociationSet Name="WishListQuote" Association="Model1.WishListQuote">
+            <End Role="WishList" EntitySet="WishLists" />
+            <End Role="Quote" EntitySet="Quotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Quotes" Relationship="Model1.AdminQuote" FromRole="Admin" ToRole="Quote" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="WishList" Relationship="Model1.CustomerWishList" FromRole="Customer" ToRole="WishList" />
+          <NavigationProperty Name="Quotes" Relationship="Model1.CustomerQuote" FromRole="Customer" ToRole="Quote" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Quantity" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+          <NavigationProperty Name="ProductCatergory" Relationship="Model1.ProductCatergoriesProduct" FromRole="Product" ToRole="ProductCatergories" />
+          <Property Name="ProductCatergoriesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WishListItem" Relationship="Model1.WishListItemProduct" FromRole="Product" ToRole="WishListItem" />
+          <Property Name="WishListItemId" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WishList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CustomerWishList" FromRole="WishList" ToRole="Customer" />
+          <NavigationProperty Name="WishListItems" Relationship="Model1.WishListWishListItem" FromRole="WishList" ToRole="WishListItem" />
+          <NavigationProperty Name="Quotes" Relationship="Model1.WishListQuote" FromRole="WishList" ToRole="Quote" />
+        </EntityType>
+        <EntityType Name="Quote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Location" Type="String" Nullable="false" />
+          <Property Name="Date" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <NavigationProperty Name="Admin" Relationship="Model1.AdminQuote" FromRole="Quote" ToRole="Admin" />
+          <Property Name="AdminId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CustomerQuote" FromRole="Quote" ToRole="Customer" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WishList" Relationship="Model1.WishListQuote" FromRole="Quote" ToRole="WishList" />
+          <Property Name="WishListId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCatergories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Model1.ProductCatergoriesProduct" FromRole="ProductCatergories" ToRole="Product" />
+        </EntityType>
+        <Association Name="AdminQuote">
+          <End Type="Model1.Admin" Role="Admin" Multiplicity="1" />
+          <End Type="Model1.Quote" Role="Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductCatergoriesProduct">
+          <End Type="Model1.ProductCatergories" Role="ProductCatergories" Multiplicity="1" />
+          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCatergories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCatergoriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerWishList">
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Model1.WishList" Role="WishList" Multiplicity="1" />
+        </Association>
+        <Association Name="CustomerQuote">
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Model1.Quote" Role="Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="WishListItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="QuantityRequest" Type="String" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Model1.WishListItemProduct" FromRole="WishListItem" ToRole="Product" />
+          <Property Name="UnitCost" Type="String" Nullable="false" />
+          <Property Name="SubTotal" Type="String" Nullable="false" />
+          <NavigationProperty Name="WishList" Relationship="Model1.WishListWishListItem" FromRole="WishListItem" ToRole="WishList" />
+          <Property Name="WishListId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="WishListItemProduct">
+          <End Type="Model1.WishListItem" Role="WishListItem" Multiplicity="1" />
+          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WishListItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="WishListItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WishListWishListItem">
+          <End Type="Model1.WishList" Role="WishList" Multiplicity="1" />
+          <End Type="Model1.WishListItem" Role="WishListItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WishList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WishListItem">
+              <PropertyRef Name="WishListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WishListQuote">
+          <End Type="Model1.WishList" Role="WishList" Multiplicity="1" />
+          <End Type="Model1.Quote" Role="Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WishList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="WishListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Admin)">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Product)">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductCatergoriesId" ColumnName="ProductCatergoriesId" />
+          <ScalarProperty Name="WishListItemId" ColumnName="WishListItemId" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WishLists">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.WishList)">
+        <MappingFragment StoreEntitySet="WishLists">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quotes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Quote)">
+        <MappingFragment StoreEntitySet="Quotes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="WishListId" ColumnName="WishListId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCatergories">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ProductCatergories)">
+        <MappingFragment StoreEntitySet="ProductCatergories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WishListItems">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.WishListItem)">
+        <MappingFragment StoreEntitySet="WishListItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="QuantityRequest" ColumnName="QuantityRequest" />
+          <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="WishListId" ColumnName="WishListId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CustomerWishList" TypeName="Model1.CustomerWishList" StoreEntitySet="Customers">
+      <EndProperty Name="WishList">
+        <ScalarProperty Name="Id" ColumnName="WishList_Id" />
+      </EndProperty>
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
