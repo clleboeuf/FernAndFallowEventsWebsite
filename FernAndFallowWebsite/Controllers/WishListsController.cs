@@ -104,6 +104,11 @@ namespace FernAndFallowWebsite.Controllers
             return View(wishList);
         }
 
+        public ActionResult GetQuote()
+        {
+            return RedirectToAction("Create", "Quotes");
+        }
+
         // POST: WishLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

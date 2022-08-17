@@ -4,22 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="57f1b8d87c224270a44d99b2b35c03c8" Name="Diagram1" ZoomLevel="73" >
+      <Diagram DiagramId="57f1b8d87c224270a44d99b2b35c03c8" Name="Diagram1" ZoomLevel="79" >
         <EntityTypeShape EntityType="Model1.Admin" Width="1.5" PointX="3.25" PointY="2" />
         <EntityTypeShape EntityType="Model1.Customer" Width="1.5" PointX="3.25" PointY="4.25" />
         <EntityTypeShape EntityType="Model1.Product" Width="1.5" PointX="10.125" PointY="2" />
         <EntityTypeShape EntityType="Model1.WishList" Width="1.5" PointX="5.75" PointY="5.625" />
         <EntityTypeShape EntityType="Model1.Quote" Width="1.5" PointX="7.25" PointY="2" />
-        <EntityTypeShape EntityType="Model1.ProductCatergories" Width="1.5" PointX="10.625" PointY="6" />
-        <AssociationConnector Association="Model1.AdminQuote" />
-        <AssociationConnector Association="Model1.ProductCatergoriesProduct" />
+        <EntityTypeShape EntityType="Model1.ProductCategories" Width="1.5" PointX="10.625" PointY="6" />
+        <AssociationConnector Association="Model1.ProductCategoriesProduct" />
         <AssociationConnector Association="Model1.CustomerWishList" />
-        <AssociationConnector Association="Model1.CustomerQuote" />
         <EntityTypeShape EntityType="Model1.WishListItem" Width="1.5" PointX="8" PointY="5.625" />
-        <AssociationConnector Association="Model1.WishListItemProduct" />
         <AssociationConnector Association="Model1.WishListWishListItem" />
-        <AssociationConnector Association="Model1.WishListQuote" ManuallyRouted="false" >
-        </AssociationConnector>
+        <EntityTypeShape EntityType="Model1.AspNetRole" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="Model1.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="Model1.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10" />
+        <EntityTypeShape EntityType="Model1.AspNetUser" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="Model1.Guest" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model1.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

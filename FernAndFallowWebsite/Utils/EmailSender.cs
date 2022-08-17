@@ -10,20 +10,21 @@ namespace FernAndFallowWebsite.Utils
 {
     public class EmailSender
     {
+        public String EmailTo { get; set; }
+        public String EmailSubject { get; set; }
+        public String EmailContents { get; set; }
 
         public async Task SendEmailExecute()
         {
-            var apiKey = Environment.GetEnvironmentVariable("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");
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("cleb0002@student.monash.edu", "Example User");
+            var client = new SendGridClient("SG.W08HCLY8Rzin83L77qJzaA.6VDBHJDKwUMIbTGrlp - O6iVco126yJhuk4egqUR8g2g");
+            var from = new EmailAddress("chris.levi.leboeuf@gmail.com", "Example User");
             var subject = "Sending with Twilio SendGrid is Fun";
-            var to = new EmailAddress("chris.levi.leboeuf@gmail.com", "Example User");
+            var to = new EmailAddress("cleboeuf@chairo.vic.edu.au", "Example User");
             var plainTextContent = "and easy to do anywhere, even with C#";
             var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
-            Console.WriteLine("Sending email");
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
-            
+            Console.WriteLine(response.IsSuccessStatusCode ? "Email queued successfully!" : "Something went wrong!");
         }
     }
 }

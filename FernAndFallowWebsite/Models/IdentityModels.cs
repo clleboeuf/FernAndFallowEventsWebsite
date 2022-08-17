@@ -30,8 +30,8 @@ namespace FernAndFallowWebsite.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<FernAndFallowWebsite.Models.Admin> Admins { get; set; }
+        public System.Data.Entity.DbSet<FernAndFallowWebsite.Models.Quote> Quotes { get; set; }
 
-        public System.Data.Entity.DbSet<FernAndFallowWebsite.Models.Customer> Customers { get; set; }
+        public System.Data.Entity.DbSet<FernAndFallowWebsite.Models.WishList> WishLists { get; set; }
     }
 }

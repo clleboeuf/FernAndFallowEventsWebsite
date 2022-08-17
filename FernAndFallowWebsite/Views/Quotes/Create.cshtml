@@ -1,0 +1,169 @@
+﻿@model FernAndFallowWebsite.Models.Quote
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Quote</h2>
+<head>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNsZWJvZXVmdW5pIiwiYSI6ImNsNnZ0ZWs0aTFucWYzY3A1eno4Y3VqbmwifQ.qsh1eijpQggjKx-UlxNFTQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [151.1750, -33.9378],
+            zoom: 9
+        });
+
+        const coordinatesGeocoder = function (query) {
+            const matches = query.match(
+                /^[ ]*(?:Lat: )?(-?\d*)[, ]+(?:Lng: )?(-?\d*\.?\d*)[ ]*$/i
+            );
+            console.log("Got here", matches);
+            if (!matches) {
+                return null;
+            }
+
+            function coordinateFeature(lng, lat) {
+                return {
+                    center: [lng, lat],
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [lng, lat]
+                    },
+                    place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                    place_type: ['coordinate'],
+                    properties: {},
+                    type: 'Feature'
+                };
+            }
+            console.log("Got here 1")
+            const coord1 = Number(matches[1]);
+            const coord2 = Number(matches[2]);
+            const geocodes = [];
+
+            if (coord1 < -90 || coord1 > 90) {
+                geocodes.push(coordinateFeature(coord1, coord2));
+            }
+
+            if (coord2 < -90 || coord2 > 90) {
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+
+            if (geocodes.length === 0) {
+                geocodes.push(coordinateFeature(coord1, coord2));
+                geocodes.push(coordinateFeature(coord2, coord1));
+            }
+
+            return geocodes;
+        };
+
+        // Add the control to the map.
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                localGeocoder: coordinatesGeocoder,
+                zoom: 4,
+                placeholder: 'Try: Melbourne, Vic',
+                mapboxgl: mapboxgl,
+                reverseGeocode: true
+            })
+        );
+
+        map.on('mousemove', (e) => {
+            document.getElementById('info').innerHTML =
+                JSON.stringify(e.point) +
+                '<br />' +
+                JSON.stringify(e.lngLat.wrap());
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+
+        const marker = new mapboxgl.Marker()
+            .setLngLat([151.1750, -33.9378])
+            .addTo(map);
+
+        const marker1 = new mapboxgl.Marker()
+            .setLngLat([151.1750, -33.9378])
+            .addTo(map);
+
+    </script>
+
+</body>
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <link href='fullcalendar-5.11.2/lib/main.css' rel='stylesheet' />
+    <script src='fullcalendar-5.11.2/lib/main.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+
+    </script>
+</head>
+<body>
+    <div id='calendar'></div>
+</body>
+</html>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "GoToWishList")
+</div>

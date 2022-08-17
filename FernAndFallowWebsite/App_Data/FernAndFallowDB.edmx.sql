@@ -27,32 +27,13 @@ GO
 -- Creating all tables
 -- --------------------------------------------------
 
--- Creating table 'Admins'
-CREATE TABLE [dbo].[Admins] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'Customers'
-CREATE TABLE [dbo].[Customers] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL,
-    [WishList_Id] int  NOT NULL
-);
-GO
-
 -- Creating table 'Products'
 CREATE TABLE [dbo].[Products] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Quantity] nvarchar(max)  NOT NULL,
     [Price] nvarchar(max)  NOT NULL,
-    [ProductCatergoriesId] int  NOT NULL,
+    [ProductCategoriesId] int  NOT NULL,
     [WishListItemId] int  NOT NULL,
     [Image] nvarchar(max)  NOT NULL
 );
@@ -70,14 +51,12 @@ CREATE TABLE [dbo].[Quotes] (
     [Location] nvarchar(max)  NOT NULL,
     [Date] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [AdminId] int  NOT NULL,
-    [CustomerId] int  NOT NULL,
     [WishListId] int  NOT NULL
 );
 GO
 
--- Creating table 'ProductCatergories'
-CREATE TABLE [dbo].[ProductCatergories] (
+-- Creating table 'ProductCategories'
+CREATE TABLE [dbo].[ProductCategories] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL
 );
@@ -104,18 +83,6 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [Id] in table 'Admins'
-ALTER TABLE [dbo].[Admins]
-ADD CONSTRAINT [PK_Admins]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Customers'
-ALTER TABLE [dbo].[Customers]
-ADD CONSTRAINT [PK_Customers]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'Products'
 ALTER TABLE [dbo].[Products]
 ADD CONSTRAINT [PK_Products]
@@ -134,15 +101,9 @@ ADD CONSTRAINT [PK_Quotes]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'ProductCatergories'
-ALTER TABLE [dbo].[ProductCatergories]
-ADD CONSTRAINT [PK_ProductCatergories]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Guests'
-ALTER TABLE [dbo].[Guests]
-ADD CONSTRAINT [PK_Guests]
+-- Creating primary key on [Id] in table 'ProductCategories'
+ALTER TABLE [dbo].[ProductCategories]
+ADD CONSTRAINT [PK_ProductCategories]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -156,64 +117,19 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [AdminId] in table 'Quotes'
-ALTER TABLE [dbo].[Quotes]
-ADD CONSTRAINT [FK_AdminQuote]
-    FOREIGN KEY ([AdminId])
-    REFERENCES [dbo].[Admins]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AdminQuote'
-CREATE INDEX [IX_FK_AdminQuote]
-ON [dbo].[Quotes]
-    ([AdminId]);
-GO
-
--- Creating foreign key on [ProductCatergoriesId] in table 'Products'
+-- Creating foreign key on [ProductCategoriesId] in table 'Products'
 ALTER TABLE [dbo].[Products]
-ADD CONSTRAINT [FK_ProductCatergoriesProduct]
-    FOREIGN KEY ([ProductCatergoriesId])
-    REFERENCES [dbo].[ProductCatergories]
+ADD CONSTRAINT [FK_ProductCategoriesProduct]
+    FOREIGN KEY ([ProductCategoriesId])
+    REFERENCES [dbo].[ProductCategories]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ProductCatergoriesProduct'
-CREATE INDEX [IX_FK_ProductCatergoriesProduct]
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductCategoriesProduct'
+CREATE INDEX [IX_FK_ProductCategoriesProduct]
 ON [dbo].[Products]
-    ([ProductCatergoriesId]);
-GO
-
--- Creating foreign key on [WishList_Id] in table 'Customers'
-ALTER TABLE [dbo].[Customers]
-ADD CONSTRAINT [FK_CustomerWishList]
-    FOREIGN KEY ([WishList_Id])
-    REFERENCES [dbo].[WishLists]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CustomerWishList'
-CREATE INDEX [IX_FK_CustomerWishList]
-ON [dbo].[Customers]
-    ([WishList_Id]);
-GO
-
--- Creating foreign key on [CustomerId] in table 'Quotes'
-ALTER TABLE [dbo].[Quotes]
-ADD CONSTRAINT [FK_CustomerQuote]
-    FOREIGN KEY ([CustomerId])
-    REFERENCES [dbo].[Customers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CustomerQuote'
-CREATE INDEX [IX_FK_CustomerQuote]
-ON [dbo].[Quotes]
-    ([CustomerId]);
+    ([ProductCategoriesId]);
 GO
 
 -- Creating foreign key on [WishListItemId] in table 'Products'

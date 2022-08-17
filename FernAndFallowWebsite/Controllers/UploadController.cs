@@ -17,23 +17,23 @@ namespace FernAndFallowWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadFile(HttpPostedFileBase file)
+        public ActionResult UploadFile(HttpPostedFileBase file, String folder)
         {
             try
             {
                 if (file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                    string _path = Path.Combine(Server.MapPath("~/" + folder), _FileName);
                     file.SaveAs(_path);
                 }
                 ViewBag.Message = "File Uploaded Successfully!!";
-                return View("~/Views/SendEmailViewModels/Create.cshtml");
+                return View("~/Views/Home/Index.cshtml");
             }
             catch
             {
                 ViewBag.Message = "File upload failed!!";
-                return View("~/ Views / SendEmailViewModels / Create.cshtml");
+                return View("~/Views/Home/Index.cshtml");
             }
         }
     }

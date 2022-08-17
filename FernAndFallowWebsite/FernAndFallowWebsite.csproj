@@ -226,6 +226,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Admin.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\AspNetRole.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\AspNetUser.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\AspNetUserClaim.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\AspNetUserLogin.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\ComplexType1.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Customer.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\FernAndFallowDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FernAndFallowDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\FernAndFallowDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Guest.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Product.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\ProductCategories.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Quote.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\WishList.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\WishListItem.cs">
+      <DependentUpon>FernAndFallowDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -233,20 +282,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminsController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductCategoriesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\QuotesController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\WishListsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\SendEmailViewModel.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="App_Data\Model1.Context.cs">
@@ -273,12 +319,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\EmailSender.cs" />
-    <Compile Include="Controllers\SendEmailViewModelsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-FernAndFallowWebsite-20220731124620.mdf" />
     <Content Include="App_Data\aspnet-FernAndFallowWebsite-20220731124620_log.ldf">
       <DependentUpon>aspnet-FernAndFallowWebsite-20220731124620.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\FernAndFallowDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FernAndFallowDB.Context.cs</LastGenOutput>
+      <DependentUpon>FernAndFallowDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="App_Data\FernAndFallowDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FernAndFallowDB.cs</LastGenOutput>
+      <DependentUpon>FernAndFallowDB.edmx</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -353,30 +408,31 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Delete.cshtml" />
-    <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Admins\Create.cshtml" />
-    <Content Include="Views\Admins\Delete.cshtml" />
-    <Content Include="Views\Admins\Details.cshtml" />
-    <Content Include="Views\Admins\Edit.cshtml" />
-    <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\WishLists\Create.cshtml" />
     <Content Include="Views\WishLists\Delete.cshtml" />
     <Content Include="Views\WishLists\Details.cshtml" />
     <Content Include="Views\WishLists\Edit.cshtml" />
     <Content Include="Views\WishLists\Index.cshtml" />
-    <Content Include="Views\SendEmailViewModels\Create.cshtml" />
-    <Content Include="Views\SendEmailViewModels\Delete.cshtml" />
-    <Content Include="Views\SendEmailViewModels\Details.cshtml" />
-    <Content Include="Views\SendEmailViewModels\Edit.cshtml" />
-    <Content Include="Views\SendEmailViewModels\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\ProductCategories\Create.cshtml" />
+    <Content Include="Views\ProductCategories\Delete.cshtml" />
+    <Content Include="Views\ProductCategories\Details.cshtml" />
+    <Content Include="Views\ProductCategories\Edit.cshtml" />
+    <Content Include="Views\ProductCategories\Index.cshtml" />
+    <Content Include="Views\Quotes\Create.cshtml" />
+    <Content Include="Views\Quotes\Delete.cshtml" />
+    <Content Include="Views\Quotes\Details.cshtml" />
+    <Content Include="Views\Quotes\Edit.cshtml" />
+    <Content Include="Views\Quotes\Index.cshtml" />
+    <Content Include="Views\Manage\Roles.cshtml" />
+    <Content Include="Views\Manage\AddRoleToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -23,16 +23,15 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Hire", "Index", "ProductCategories")</li>
 
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.IsInRole("Customer"))
                     {
-                        <li>@Html.ActionLink("Wish List", "Create", "WishLists")</li>
+                        <li>@Html.ActionLink("Wish List", "Index", "WishLists")</li>
                     }
-
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Send Email", "Create", "SendEmailViewModels")</li>
+                        <li>@Html.ActionLink("Quotes", "Index", "Quotes")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

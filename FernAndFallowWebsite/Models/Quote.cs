@@ -18,17 +18,7 @@ namespace FernAndFallowWebsite.Models
 
         [Required]
         public string Description { get; set; }
-
-        public int AdminId { get; set; }
-
-        public int CustomerId { get; set; }
-
-        public int WishListId { get; set; }
-
-        public virtual Admin Admin { get; set; }
-
-        public virtual Customer Customer { get; set; }
-
         public virtual WishList WishList { get; set; }
+
     }
 }

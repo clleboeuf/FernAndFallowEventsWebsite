@@ -19,15 +19,10 @@ namespace FernAndFallowWebsite.Models
         [Required]
         public string Price { get; set; }
 
-        public int ProductCatergoriesId { get; set; }
+        public int ProductCategoriesId { get; set; }
 
-        public int WishListItemId { get; set; }
+        public byte[] Image { get; set; }
 
-        [Required]
-        public string Image { get; set; }
-
-        public virtual ProductCategory ProductCatergory { get; set; }
-
-        public virtual WishListItem WishListItem { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }
